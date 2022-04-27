@@ -1,5 +1,4 @@
-﻿
-namespace SwissTransportGUI
+﻿namespace SwissTransportGUI
 {
     partial class Form1
     {
@@ -38,4 +37,3 @@ namespace SwissTransportGUI
         #endregion
     }
 }
-
