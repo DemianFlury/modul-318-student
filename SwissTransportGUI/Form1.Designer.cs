@@ -216,6 +216,7 @@
             this.DestinationComboBoxTab1.Name = "DestinationComboBoxTab1";
             this.DestinationComboBoxTab1.Size = new System.Drawing.Size(210, 23);
             this.DestinationComboBoxTab1.TabIndex = 3;
+            this.DestinationComboBoxTab1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.DestinationComboBoxTab1_KeyUp);
             // 
             // AbfahrtsortComboBoxTab1
             // 
