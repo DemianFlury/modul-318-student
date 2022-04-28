@@ -30,6 +30,7 @@
         {
             this.tabFunktionsauswahl = new System.Windows.Forms.TabControl();
             this.tabPageVerbindungssuche = new System.Windows.Forms.TabPage();
+            this.AbfahrtsZeitDateTimePickerTab1 = new System.Windows.Forms.DateTimePicker();
             this.VerbindungsanzeigeDataGridViewTab1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,7 +41,7 @@
             this.KarteWebViewTab1 = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.VerbindungSuchenButtonTab1 = new System.Windows.Forms.Button();
             this.labelAbfahrtszeitTab1 = new System.Windows.Forms.Label();
-            this.AbfahrtszeitdateTimePickerTab1 = new System.Windows.Forms.DateTimePicker();
+            this.AbfahrtsDatumDateTimePickerTab1 = new System.Windows.Forms.DateTimePicker();
             this.DestinationComboBoxTab1 = new System.Windows.Forms.ComboBox();
             this.AbfahrtsortComboBoxTab1 = new System.Windows.Forms.ComboBox();
             this.labelDestinationTab1 = new System.Windows.Forms.Label();
@@ -85,17 +86,18 @@
             this.tabFunktionsauswahl.Location = new System.Drawing.Point(12, 12);
             this.tabFunktionsauswahl.Name = "tabFunktionsauswahl";
             this.tabFunktionsauswahl.SelectedIndex = 0;
-            this.tabFunktionsauswahl.Size = new System.Drawing.Size(890, 526);
+            this.tabFunktionsauswahl.Size = new System.Drawing.Size(1094, 526);
             this.tabFunktionsauswahl.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.tabFunktionsauswahl.TabIndex = 5;
             // 
             // tabPageVerbindungssuche
             // 
+            this.tabPageVerbindungssuche.Controls.Add(this.AbfahrtsZeitDateTimePickerTab1);
             this.tabPageVerbindungssuche.Controls.Add(this.VerbindungsanzeigeDataGridViewTab1);
             this.tabPageVerbindungssuche.Controls.Add(this.KarteWebViewTab1);
             this.tabPageVerbindungssuche.Controls.Add(this.VerbindungSuchenButtonTab1);
             this.tabPageVerbindungssuche.Controls.Add(this.labelAbfahrtszeitTab1);
-            this.tabPageVerbindungssuche.Controls.Add(this.AbfahrtszeitdateTimePickerTab1);
+            this.tabPageVerbindungssuche.Controls.Add(this.AbfahrtsDatumDateTimePickerTab1);
             this.tabPageVerbindungssuche.Controls.Add(this.DestinationComboBoxTab1);
             this.tabPageVerbindungssuche.Controls.Add(this.AbfahrtsortComboBoxTab1);
             this.tabPageVerbindungssuche.Controls.Add(this.labelDestinationTab1);
@@ -103,10 +105,17 @@
             this.tabPageVerbindungssuche.Location = new System.Drawing.Point(4, 24);
             this.tabPageVerbindungssuche.Name = "tabPageVerbindungssuche";
             this.tabPageVerbindungssuche.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageVerbindungssuche.Size = new System.Drawing.Size(882, 498);
+            this.tabPageVerbindungssuche.Size = new System.Drawing.Size(1086, 498);
             this.tabPageVerbindungssuche.TabIndex = 0;
             this.tabPageVerbindungssuche.Text = "Verbindungssuche";
             this.tabPageVerbindungssuche.UseVisualStyleBackColor = true;
+            // 
+            // AbfahrtsZeitDateTimePickerTab1
+            // 
+            this.AbfahrtsZeitDateTimePickerTab1.Location = new System.Drawing.Point(247, 80);
+            this.AbfahrtsZeitDateTimePickerTab1.Name = "AbfahrtsZeitDateTimePickerTab1";
+            this.AbfahrtsZeitDateTimePickerTab1.Size = new System.Drawing.Size(198, 23);
+            this.AbfahrtsZeitDateTimePickerTab1.TabIndex = 9;
             // 
             // VerbindungsanzeigeDataGridViewTab1
             // 
@@ -125,8 +134,9 @@
             this.VerbindungsanzeigeDataGridViewTab1.ReadOnly = true;
             this.VerbindungsanzeigeDataGridViewTab1.RowHeadersVisible = false;
             this.VerbindungsanzeigeDataGridViewTab1.RowTemplate.Height = 25;
-            this.VerbindungsanzeigeDataGridViewTab1.Size = new System.Drawing.Size(400, 483);
+            this.VerbindungsanzeigeDataGridViewTab1.Size = new System.Drawing.Size(604, 483);
             this.VerbindungsanzeigeDataGridViewTab1.TabIndex = 8;
+            this.VerbindungsanzeigeDataGridViewTab1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.VerbindungsanzeigeDataGridViewTab1_CellContentClick);
             // 
             // Column1
             // 
@@ -171,6 +181,7 @@
             this.Column6.HeaderText = "Per E-Mail senden";
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
+            this.Column6.Text = "E-Mail senden";
             // 
             // KarteWebViewTab1
             // 
@@ -202,12 +213,12 @@
             this.labelAbfahrtszeitTab1.TabIndex = 5;
             this.labelAbfahrtszeitTab1.Text = "Abfahrtszeit:";
             // 
-            // AbfahrtszeitdateTimePickerTab1
+            // AbfahrtsDatumDateTimePickerTab1
             // 
-            this.AbfahrtszeitdateTimePickerTab1.Location = new System.Drawing.Point(79, 77);
-            this.AbfahrtszeitdateTimePickerTab1.Name = "AbfahrtszeitdateTimePickerTab1";
-            this.AbfahrtszeitdateTimePickerTab1.Size = new System.Drawing.Size(210, 23);
-            this.AbfahrtszeitdateTimePickerTab1.TabIndex = 4;
+            this.AbfahrtsDatumDateTimePickerTab1.Location = new System.Drawing.Point(79, 80);
+            this.AbfahrtsDatumDateTimePickerTab1.Name = "AbfahrtsDatumDateTimePickerTab1";
+            this.AbfahrtsDatumDateTimePickerTab1.Size = new System.Drawing.Size(162, 23);
+            this.AbfahrtsDatumDateTimePickerTab1.TabIndex = 4;
             // 
             // DestinationComboBoxTab1
             // 
@@ -255,7 +266,7 @@
             this.tabPageAbfahrtstabelle.Location = new System.Drawing.Point(4, 24);
             this.tabPageAbfahrtstabelle.Name = "tabPageAbfahrtstabelle";
             this.tabPageAbfahrtstabelle.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAbfahrtstabelle.Size = new System.Drawing.Size(882, 498);
+            this.tabPageAbfahrtstabelle.Size = new System.Drawing.Size(1086, 498);
             this.tabPageAbfahrtstabelle.TabIndex = 1;
             this.tabPageAbfahrtstabelle.Text = "Abfahrtstabelle";
             this.tabPageAbfahrtstabelle.UseVisualStyleBackColor = true;
@@ -274,7 +285,7 @@
             this.AbfahrtenanzeigeDataGridViewTab2.ReadOnly = true;
             this.AbfahrtenanzeigeDataGridViewTab2.RowHeadersVisible = false;
             this.AbfahrtenanzeigeDataGridViewTab2.RowTemplate.Height = 25;
-            this.AbfahrtenanzeigeDataGridViewTab2.Size = new System.Drawing.Size(400, 486);
+            this.AbfahrtenanzeigeDataGridViewTab2.Size = new System.Drawing.Size(604, 486);
             this.AbfahrtenanzeigeDataGridViewTab2.TabIndex = 10;
             // 
             // dataGridViewTextBoxColumn1
@@ -347,7 +358,7 @@
             this.tabPageStationssuche.Location = new System.Drawing.Point(4, 24);
             this.tabPageStationssuche.Name = "tabPageStationssuche";
             this.tabPageStationssuche.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageStationssuche.Size = new System.Drawing.Size(882, 498);
+            this.tabPageStationssuche.Size = new System.Drawing.Size(1086, 498);
             this.tabPageStationssuche.TabIndex = 2;
             this.tabPageStationssuche.Text = "Stationssuche";
             this.tabPageStationssuche.UseVisualStyleBackColor = true;
@@ -376,7 +387,7 @@
             this.AbfahrtenanzeigeDataGridViewTab3.ReadOnly = true;
             this.AbfahrtenanzeigeDataGridViewTab3.RowHeadersVisible = false;
             this.AbfahrtenanzeigeDataGridViewTab3.RowTemplate.Height = 25;
-            this.AbfahrtenanzeigeDataGridViewTab3.Size = new System.Drawing.Size(400, 486);
+            this.AbfahrtenanzeigeDataGridViewTab3.Size = new System.Drawing.Size(604, 486);
             this.AbfahrtenanzeigeDataGridViewTab3.TabIndex = 9;
             // 
             // dataGridViewTextBoxColumn4
@@ -433,10 +444,11 @@
             this.AcceptButton = this.VerbindungSuchenButtonTab1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(914, 547);
+            this.ClientSize = new System.Drawing.Size(1114, 547);
             this.Controls.Add(this.tabFunktionsauswahl);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.tabFunktionsauswahl.ResumeLayout(false);
             this.tabPageVerbindungssuche.ResumeLayout(false);
             this.tabPageVerbindungssuche.PerformLayout();
@@ -459,16 +471,10 @@
         private TabControl tabFunktionsauswahl;
         private TabPage tabPageVerbindungssuche;
         private DataGridView VerbindungsanzeigeDataGridViewTab1;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column3;
-        private DataGridViewTextBoxColumn Column4;
-        private DataGridViewTextBoxColumn Column5;
-        private DataGridViewButtonColumn Column6;
         private Microsoft.Web.WebView2.WinForms.WebView2 KarteWebViewTab1;
         private Button VerbindungSuchenButtonTab1;
         private Label labelAbfahrtszeitTab1;
-        private DateTimePicker AbfahrtszeitdateTimePickerTab1;
+        private DateTimePicker AbfahrtsDatumDateTimePickerTab1;
         private ComboBox DestinationComboBoxTab1;
         private ComboBox AbfahrtsortComboBoxTab1;
         private Label labelDestinationTab1;
@@ -491,5 +497,12 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private Button StationsSucheStartenButtonTab3;
+        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn Column2;
+        private DataGridViewTextBoxColumn Column3;
+        private DataGridViewTextBoxColumn Column4;
+        private DataGridViewTextBoxColumn Column5;
+        private DataGridViewButtonColumn Column6;
+        private DateTimePicker AbfahrtsZeitDateTimePickerTab1;
     }
 }

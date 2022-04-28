@@ -18,12 +18,13 @@ namespace SwissTransportGUI
             try
             {
 
-                var VerbindungsListe = verbindung.GetConnections(AbfahrtsortComboBoxTab1.Text, DestinationComboBoxTab1.Text);
+                var VerbindungsListe = verbindung.GetConnections(AbfahrtsortComboBoxTab1.Text, DestinationComboBoxTab1.Text, 
+                    AbfahrtsDatumDateTimePickerTab1.Value.ToShortDateString(), AbfahrtsZeitDateTimePickerTab1.Value.ToShortTimeString());
 
                 foreach (Connection VerbindungsItem in VerbindungsListe.ConnectionList)
                 {
-                    VerbindungsanzeigeDataGridViewTab1.Rows.Add(VerbindungsItem.From, VerbindungsItem.To, VerbindungsItem.From.Departure,
-                       VerbindungsItem.Duration, VerbindungsItem.From.Platform);
+                    VerbindungsanzeigeDataGridViewTab1.Rows.Add(VerbindungsItem.From.Station.Name, VerbindungsItem.To.Station.Name, 
+                        VerbindungsItem.From.Departure, VerbindungsItem.Duration, VerbindungsItem.From.Platform);
                 }
             } catch (Exception ex)
             {
@@ -127,6 +128,21 @@ namespace SwissTransportGUI
                 MessageBox.Show(ex.Message);
             }
 
+        }
+
+        private void VerbindungsanzeigeDataGridViewTab1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (VerbindungsanzeigeDataGridViewTab1.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            {
+                
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            AbfahrtsZeitDateTimePickerTab1.Format = DateTimePickerFormat.Time;
+            AbfahrtsDatumDateTimePickerTab1.Format = DateTimePickerFormat.Custom;
+            AbfahrtsDatumDateTimePickerTab1.CustomFormat = "dd.MM.yyyy";
         }
     }
 }
