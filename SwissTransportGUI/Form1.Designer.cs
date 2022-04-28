@@ -326,6 +326,7 @@
             this.AbfahrtsortComboBoxTab2.Name = "AbfahrtsortComboBoxTab2";
             this.AbfahrtsortComboBoxTab2.Size = new System.Drawing.Size(210, 23);
             this.AbfahrtsortComboBoxTab2.TabIndex = 4;
+            this.AbfahrtsortComboBoxTab2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.AbfahrtsortComboBoxTab2_KeyUp);
             // 
             // labelAbfahrtsortTab2
             // 

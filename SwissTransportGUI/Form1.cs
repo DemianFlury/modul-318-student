@@ -73,28 +73,45 @@ namespace SwissTransportGUI
 
         private void AbfahrtsortComboBoxTab1_KeyUp(object sender, KeyEventArgs e)
         {
-            try 
-            { 
-                if (char.IsLetterOrDigit((char)e.KeyCode))
-                {
-                    var StationList = verbindung.GetStations(AbfahrtsortComboBoxTab1.Text);
+            AutoFill(sender, e);
+        }
 
-                    AbfahrtsortComboBoxTab1.DroppedDown = true;
+        private void DestinationComboBoxTab1_KeyUp(object sender, KeyEventArgs e)
+        {
+            AutoFill(sender, e);
+        }
+
+        private void AbfahrtsortComboBoxTab2_KeyUp(object sender, KeyEventArgs e)
+        {
+            AutoFill(sender, e);
+        }
+
+        void AutoFill(object sender, KeyEventArgs Taste)
+        {
+            try
+            {
+                ComboBox cb = (ComboBox)sender;
+
+                if (char.IsLetterOrDigit((char)Taste.KeyCode))
+                {
+                    var StationList = verbindung.GetStations(cb.Text);
+
+                    cb.DroppedDown = true;
                     Cursor.Current = Cursors.Default;
-                    AbfahrtsortComboBoxTab1.Items.Clear();
+                    cb.Items.Clear();
 
                     try
                     {
                         if (StationList.StationList.Count == 0)
                         {
-                            AbfahrtsortComboBoxTab1.Items.Add("Keine Übereinstimmungen");
+                            cb.Items.Add("Keine Übereinstimmungen");
                         }
                         else
                         {
                             foreach (Station StationItem in StationList.StationList)
                             {
                                 if (StationItem.Name == null) break;
-                                else AbfahrtsortComboBoxTab1.Items.Add(StationItem.Name);
+                                else cb.Items.Add(StationItem.Name);
                             }
                         }
                     }
@@ -102,48 +119,14 @@ namespace SwissTransportGUI
                     {
                         MessageBox.Show("Bitte geben Sie eine valide Haltestelle an\n" + ex.Message);
                     }
-
-                    AbfahrtsortComboBoxTab1.SelectionStart = AbfahrtsortComboBoxTab1.Text.Length;
+                    cb.SelectionStart = cb.Text.Length;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-        }
 
-        private void DestinationComboBoxTab1_KeyUp(object sender, KeyEventArgs e)
-        {
-            try
-            {
-
-                if (char.IsLetterOrDigit((char)e.KeyCode))
-                {
-                    var StationList = verbindung.GetStations(DestinationComboBoxTab1.Text);
-
-                    DestinationComboBoxTab1.DroppedDown = true;
-                    Cursor.Current = Cursors.Default;
-                    DestinationComboBoxTab1.Items.Clear();
-
-                    if (StationList.StationList.Count == 0)
-                    {
-                        DestinationComboBoxTab1.Items.Add("Keine Übereinstimmungen");
-                    }
-
-                    else
-                    {
-                        foreach (Station StationItem in StationList.StationList)
-                        {
-                            DestinationComboBoxTab1.Items.Add(StationItem.Name);
-                        }
-                    }
-                    DestinationComboBoxTab1.SelectionStart = DestinationComboBoxTab1.Text.Length;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
         }
     }
 }
