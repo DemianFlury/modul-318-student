@@ -9,7 +9,7 @@ namespace SwissTransportGUI
         private string _Abfahrtszeit { get; set; }
         private string _Dauer { get; set; }
         private string _Gleis { get; set; }
-        public string URLandMessage
+        public string _MailMessage
         {
             get
             {
@@ -28,9 +28,9 @@ namespace SwissTransportGUI
         }
 
 
-        public void FillAndSendMail()
+        public void SendMail()
         {
-            Process.Start(new ProcessStartInfo(URLandMessage) 
+            Process.Start(new ProcessStartInfo(_MailMessage) 
             { 
                 UseShellExecute = true 
             }

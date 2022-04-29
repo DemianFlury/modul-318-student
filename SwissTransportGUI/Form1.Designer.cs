@@ -30,6 +30,7 @@
         {
             this.tabFunktionsauswahl = new System.Windows.Forms.TabControl();
             this.tabPageVerbindungssuche = new System.Windows.Forms.TabPage();
+            this.TakeMeHomeButtonTab1 = new System.Windows.Forms.Button();
             this.AbfahrtsZeitDateTimePickerTab1 = new System.Windows.Forms.DateTimePicker();
             this.VerbindungsanzeigeDataGridViewTab1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -38,7 +39,6 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.KarteWebViewTab1 = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.VerbindungSuchenButtonTab1 = new System.Windows.Forms.Button();
             this.labelAbfahrtszeitTab1 = new System.Windows.Forms.Label();
             this.AbfahrtsDatumDateTimePickerTab1 = new System.Windows.Forms.DateTimePicker();
@@ -67,7 +67,6 @@
             this.tabFunktionsauswahl.SuspendLayout();
             this.tabPageVerbindungssuche.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VerbindungsanzeigeDataGridViewTab1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.KarteWebViewTab1)).BeginInit();
             this.tabPageAbfahrtstabelle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AbfahrtenanzeigeDataGridViewTab2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.KarteWebViewTab2)).BeginInit();
@@ -92,9 +91,9 @@
             // 
             // tabPageVerbindungssuche
             // 
+            this.tabPageVerbindungssuche.Controls.Add(this.TakeMeHomeButtonTab1);
             this.tabPageVerbindungssuche.Controls.Add(this.AbfahrtsZeitDateTimePickerTab1);
             this.tabPageVerbindungssuche.Controls.Add(this.VerbindungsanzeigeDataGridViewTab1);
-            this.tabPageVerbindungssuche.Controls.Add(this.KarteWebViewTab1);
             this.tabPageVerbindungssuche.Controls.Add(this.VerbindungSuchenButtonTab1);
             this.tabPageVerbindungssuche.Controls.Add(this.labelAbfahrtszeitTab1);
             this.tabPageVerbindungssuche.Controls.Add(this.AbfahrtsDatumDateTimePickerTab1);
@@ -110,9 +109,18 @@
             this.tabPageVerbindungssuche.Text = "Verbindungssuche";
             this.tabPageVerbindungssuche.UseVisualStyleBackColor = true;
             // 
+            // TakeMeHomeButtonTab1
+            // 
+            this.TakeMeHomeButtonTab1.Location = new System.Drawing.Point(6, 126);
+            this.TakeMeHomeButtonTab1.Name = "TakeMeHomeButtonTab1";
+            this.TakeMeHomeButtonTab1.Size = new System.Drawing.Size(439, 55);
+            this.TakeMeHomeButtonTab1.TabIndex = 10;
+            this.TakeMeHomeButtonTab1.Text = "Take me to work";
+            this.TakeMeHomeButtonTab1.UseVisualStyleBackColor = true;
+            // 
             // AbfahrtsZeitDateTimePickerTab1
             // 
-            this.AbfahrtsZeitDateTimePickerTab1.Location = new System.Drawing.Point(247, 80);
+            this.AbfahrtsZeitDateTimePickerTab1.Location = new System.Drawing.Point(247, 78);
             this.AbfahrtsZeitDateTimePickerTab1.Name = "AbfahrtsZeitDateTimePickerTab1";
             this.AbfahrtsZeitDateTimePickerTab1.Size = new System.Drawing.Size(198, 23);
             this.AbfahrtsZeitDateTimePickerTab1.TabIndex = 9;
@@ -183,17 +191,6 @@
             this.Column6.ReadOnly = true;
             this.Column6.Text = "E-Mail senden";
             // 
-            // KarteWebViewTab1
-            // 
-            this.KarteWebViewTab1.AllowExternalDrop = true;
-            this.KarteWebViewTab1.CreationProperties = null;
-            this.KarteWebViewTab1.DefaultBackgroundColor = System.Drawing.Color.White;
-            this.KarteWebViewTab1.Location = new System.Drawing.Point(3, 115);
-            this.KarteWebViewTab1.Name = "KarteWebViewTab1";
-            this.KarteWebViewTab1.Size = new System.Drawing.Size(442, 377);
-            this.KarteWebViewTab1.TabIndex = 7;
-            this.KarteWebViewTab1.ZoomFactor = 1D;
-            // 
             // VerbindungSuchenButtonTab1
             // 
             this.VerbindungSuchenButtonTab1.Location = new System.Drawing.Point(295, 9);
@@ -207,7 +204,7 @@
             // labelAbfahrtszeitTab1
             // 
             this.labelAbfahrtszeitTab1.AutoSize = true;
-            this.labelAbfahrtszeitTab1.Location = new System.Drawing.Point(6, 86);
+            this.labelAbfahrtszeitTab1.Location = new System.Drawing.Point(6, 84);
             this.labelAbfahrtszeitTab1.Name = "labelAbfahrtszeitTab1";
             this.labelAbfahrtszeitTab1.Size = new System.Drawing.Size(73, 15);
             this.labelAbfahrtszeitTab1.TabIndex = 5;
@@ -215,7 +212,7 @@
             // 
             // AbfahrtsDatumDateTimePickerTab1
             // 
-            this.AbfahrtsDatumDateTimePickerTab1.Location = new System.Drawing.Point(79, 80);
+            this.AbfahrtsDatumDateTimePickerTab1.Location = new System.Drawing.Point(79, 78);
             this.AbfahrtsDatumDateTimePickerTab1.Name = "AbfahrtsDatumDateTimePickerTab1";
             this.AbfahrtsDatumDateTimePickerTab1.Size = new System.Drawing.Size(162, 23);
             this.AbfahrtsDatumDateTimePickerTab1.TabIndex = 4;
@@ -453,7 +450,6 @@
             this.tabPageVerbindungssuche.ResumeLayout(false);
             this.tabPageVerbindungssuche.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VerbindungsanzeigeDataGridViewTab1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.KarteWebViewTab1)).EndInit();
             this.tabPageAbfahrtstabelle.ResumeLayout(false);
             this.tabPageAbfahrtstabelle.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AbfahrtenanzeigeDataGridViewTab2)).EndInit();
@@ -471,7 +467,6 @@
         private TabControl tabFunktionsauswahl;
         private TabPage tabPageVerbindungssuche;
         private DataGridView VerbindungsanzeigeDataGridViewTab1;
-        private Microsoft.Web.WebView2.WinForms.WebView2 KarteWebViewTab1;
         private Button VerbindungSuchenButtonTab1;
         private Label labelAbfahrtszeitTab1;
         private DateTimePicker AbfahrtsDatumDateTimePickerTab1;
@@ -504,5 +499,6 @@
         private DataGridViewTextBoxColumn Column5;
         private DataGridViewButtonColumn Column6;
         private DateTimePicker AbfahrtsZeitDateTimePickerTab1;
+        private Button TakeMeHomeButtonTab1;
     }
 }

@@ -9,7 +9,7 @@ namespace SwissTransportGUI
 
     public partial class Form1 : Form
     {
-        
+
         ITransport verbindung = new Transport();
         public Form1()
         {
@@ -21,15 +21,16 @@ namespace SwissTransportGUI
             try
             {
 
-                var VerbindungsListe = verbindung.GetConnections(AbfahrtsortComboBoxTab1.Text, DestinationComboBoxTab1.Text, 
+                var VerbindungsListe = verbindung.GetConnections(AbfahrtsortComboBoxTab1.Text, DestinationComboBoxTab1.Text,
                     AbfahrtsDatumDateTimePickerTab1.Value.ToShortDateString(), AbfahrtsZeitDateTimePickerTab1.Value.ToShortTimeString());
 
                 foreach (Connection VerbindungsItem in VerbindungsListe.ConnectionList)
                 {
-                    VerbindungsanzeigeDataGridViewTab1.Rows.Add(VerbindungsItem.From.Station.Name, VerbindungsItem.To.Station.Name, 
-                        VerbindungsItem.From.Departure, VerbindungsItem.Duration, VerbindungsItem.From.Platform);
+                    VerbindungsanzeigeDataGridViewTab1.Rows.Add(VerbindungsItem.From.Station.Name, VerbindungsItem.To.Station.Name,
+                        VerbindungsItem.From.Departure, string.Format("{0:HH:mm}", VerbindungsItem.Duration), VerbindungsItem.From.Platform);
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -58,9 +59,13 @@ namespace SwissTransportGUI
         {
             try
             {
+                //Ortung
+                Ortung duWirstGeortet = new Ortung();
 
-            
+                //Ausrechnen der nächsten Station
 
+
+                //Abfahrtenliste
                 var Abfahrtsliste = verbindung.GetStationBoard(NameDerStationTextBoxTab3.Text, NameDerStationTextBoxTab3.Text);
 
                 foreach (StationBoard AbfahrtstafelItem in Abfahrtsliste.Entries)
@@ -94,36 +99,30 @@ namespace SwissTransportGUI
         {
             try
             {
-                ComboBox cb = (ComboBox)sender;
+                ComboBox SelectedBox = (ComboBox)sender;
 
                 if (char.IsLetterOrDigit((char)Taste.KeyCode))
                 {
-                    var StationList = verbindung.GetStations(cb.Text);
+                    var StationList = verbindung.GetStations(SelectedBox.Text);
 
-                    cb.DroppedDown = true;
+                    SelectedBox.DroppedDown = true;
                     Cursor.Current = Cursors.Default;
-                    cb.Items.Clear();
+                    SelectedBox.Items.Clear();
 
-                    try
+                    if (StationList.StationList.Count == 0)
                     {
-                        if (StationList.StationList.Count == 0)
+                        SelectedBox.Items.Add("Keine Übereinstimmungen");
+                    }
+                    else
+                    {
+                        foreach (Station StationItem in StationList.StationList)
                         {
-                            cb.Items.Add("Keine Übereinstimmungen");
-                        }
-                        else
-                        {
-                            foreach (Station StationItem in StationList.StationList)
-                            {
-                                if (StationItem.Name == null) break;
-                                else cb.Items.Add(StationItem.Name);
-                            }
+                            if (StationItem.Name != null)
+                                SelectedBox.Items.Add(StationItem.Name);
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Bitte geben Sie eine valide Haltestelle an\n" + ex.Message);
-                    }
-                    cb.SelectionStart = cb.Text.Length;
+
+                    SelectedBox.SelectionStart = SelectedBox.Text.Length;
                 }
             }
             catch (Exception ex)
@@ -141,7 +140,7 @@ namespace SwissTransportGUI
 
                 string Abfahrtsort = row.Cells[0].Value.ToString();
                 string Destination = row.Cells[1].Value.ToString();
-                string Abfahrtszeit =row.Cells[2].Value.ToString();
+                string Abfahrtszeit = row.Cells[2].Value.ToString();
                 string Dauer = row.Cells[3].Value.ToString();
                 string Gleis;
                 if (row.Cells[4].Value != null)
@@ -154,7 +153,7 @@ namespace SwissTransportGUI
                 }
 
                 Email email = new Email(Abfahrtsort, Destination, Abfahrtszeit, Dauer, Gleis);
-                email.FillAndSendMail();
+                email.SendMail();
             }
         }
 
@@ -164,5 +163,6 @@ namespace SwissTransportGUI
             AbfahrtsDatumDateTimePickerTab1.Format = DateTimePickerFormat.Custom;
             AbfahrtsDatumDateTimePickerTab1.CustomFormat = "dd.MM.yyyy";
         }
+
     }
 }
