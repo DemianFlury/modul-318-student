@@ -445,7 +445,7 @@
             this.ClientSize = new System.Drawing.Size(1114, 547);
             this.Controls.Add(this.tabFunktionsauswahl);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "öV Verbindungssuche";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabFunktionsauswahl.ResumeLayout(false);
             this.tabPageVerbindungssuche.ResumeLayout(false);

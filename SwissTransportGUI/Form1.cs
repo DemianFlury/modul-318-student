@@ -48,6 +48,9 @@ namespace SwissTransportGUI
                     AbfahrtenanzeigeDataGridViewTab2.Rows.Add(Abfahrtsliste.Station.Name, AbfahrtstafelItem.To,
                         AbfahrtstafelItem.Stop.Departure);
                 }
+                Thread.Sleep(500);
+                Uri MapsQuery = new Uri("https://www.google.ch/maps/search/" + AbfahrtsortComboBoxTab2.Text);
+                KarteWebViewTab2.Source = MapsQuery;
             }
             catch (Exception ex)
             {
@@ -55,10 +58,6 @@ namespace SwissTransportGUI
             }
         }
 
-        private void StationsSucheStartenButtonTab3_Click(object sender, EventArgs e)
-        {
-            SearchPositionAsync();
-        }
 
         private void AbfahrtsortComboBoxTab1_KeyUp(object sender, KeyEventArgs e)
         {
@@ -144,6 +143,15 @@ namespace SwissTransportGUI
             AbfahrtsDatumDateTimePickerTab1.CustomFormat = "dd.MM.yyyy";
         }
 
+        private void StationsSucheStartenButtonTab3_Click(object sender, EventArgs e)
+        {
+            SearchPositionAsync();
+            Thread.Sleep(500);
+            Uri MapsQuery = new Uri("https://www.google.ch/maps/search/" + NameDerStationTextBoxTab3.Text);
+            KarteWebViewTab3.Source = MapsQuery;
+
+        }
+
         async Task SearchPositionAsync()
         {
             try
@@ -163,6 +171,7 @@ namespace SwissTransportGUI
                     AbfahrtenanzeigeDataGridViewTab3.Rows.Add(Abfahrtsliste.Station.Name, AbfahrtstafelItem.To,
                         AbfahrtstafelItem.Stop.Departure);
                 }
+
             }
             catch (Exception ex)
             {
@@ -195,6 +204,7 @@ namespace SwissTransportGUI
                         VerbindungsItem.From.Departure, string.Format("{0:HH:mm}", VerbindungsItem.Duration), VerbindungsItem.From.Platform);
                 }
 
+                
 
             }
             catch (Exception ex)
