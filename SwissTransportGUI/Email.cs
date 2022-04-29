@@ -30,9 +30,9 @@ namespace SwissTransportGUI
 
         public void SendMail()
         {
-            Process.Start(new ProcessStartInfo(_MailMessage) 
-            { 
-                UseShellExecute = true 
+            Process.Start(new ProcessStartInfo(_MailMessage)
+            {
+                UseShellExecute = true
             }
             );
         }

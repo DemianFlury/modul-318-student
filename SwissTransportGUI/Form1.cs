@@ -152,11 +152,11 @@ namespace SwissTransportGUI
                 Ortung duWirstGeortet = new Ortung();
                 string ort = await duWirstGeortet.GetGeoInfo();
 
-            NameDerStationTextBoxTab3.Text = ort;
+                NameDerStationTextBoxTab3.Text = ort;
 
 
-            //Abfahrtenliste
-            var Abfahrtsliste = verbindung.GetStationBoard(NameDerStationTextBoxTab3.Text, NameDerStationTextBoxTab3.Text);
+                //Abfahrtenliste
+                var Abfahrtsliste = verbindung.GetStationBoard(NameDerStationTextBoxTab3.Text, NameDerStationTextBoxTab3.Text);
 
                 foreach (StationBoard AbfahrtstafelItem in Abfahrtsliste.Entries)
                 {

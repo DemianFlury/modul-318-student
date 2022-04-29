@@ -11,7 +11,7 @@ namespace SwissTransportGUI
     internal class Ortung
     {
 
-        private HttpClient httpClient { get;}
+        private HttpClient httpClient { get; }
 
         public Ortung()
         {
