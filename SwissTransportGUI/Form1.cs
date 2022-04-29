@@ -1,6 +1,9 @@
+using System;
 using SwissTransport.Core;
 using SwissTransport.Models;
 using System.Windows.Forms;
+using System.Net.Mail;
+
 namespace SwissTransportGUI
 {
 
@@ -134,7 +137,24 @@ namespace SwissTransportGUI
         {
             if (VerbindungsanzeigeDataGridViewTab1.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
             {
-                
+                var row = VerbindungsanzeigeDataGridViewTab1.Rows[e.RowIndex];
+
+                string Abfahrtsort = row.Cells[0].Value.ToString();
+                string Destination = row.Cells[1].Value.ToString();
+                string Abfahrtszeit =row.Cells[2].Value.ToString();
+                string Dauer = row.Cells[3].Value.ToString();
+                string Gleis;
+                if (row.Cells[4].Value != null)
+                {
+                    Gleis = "auf Gleis " + row.Cells[4].Value.ToString();
+                }
+                else
+                {
+                    Gleis = ". Leider konnte ich kein Gleis finden";
+                }
+
+                Email email = new Email(Abfahrtsort, Destination, Abfahrtszeit, Dauer, Gleis);
+                email.FillAndSendMail();
             }
         }
 

@@ -33,7 +33,7 @@
         [Fact]
         public void Connections()
         {
-            Connections connections = this.testee.GetConnections("Sursee", "Luzern");
+            Connections connections = this.testee.GetConnections("Sursee", "Luzern", "01.01.2022", "12:00:00");
 
             connections.Should().NotBeNull();
         }
