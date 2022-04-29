@@ -117,6 +117,7 @@
             this.TakeMeHomeButtonTab1.TabIndex = 10;
             this.TakeMeHomeButtonTab1.Text = "Take me to work";
             this.TakeMeHomeButtonTab1.UseVisualStyleBackColor = true;
+            this.TakeMeHomeButtonTab1.Click += new System.EventHandler(this.TakeMeHomeButtonTab1_Click);
             // 
             // AbfahrtsZeitDateTimePickerTab1
             // 

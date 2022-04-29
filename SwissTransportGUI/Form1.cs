@@ -57,27 +57,7 @@ namespace SwissTransportGUI
 
         private void StationsSucheStartenButtonTab3_Click(object sender, EventArgs e)
         {
-            try
-            {
-                //Ortung
-                Ortung duWirstGeortet = new Ortung();
-
-                //Ausrechnen der nächsten Station
-
-
-                //Abfahrtenliste
-                var Abfahrtsliste = verbindung.GetStationBoard(NameDerStationTextBoxTab3.Text, NameDerStationTextBoxTab3.Text);
-
-                foreach (StationBoard AbfahrtstafelItem in Abfahrtsliste.Entries)
-                {
-                    AbfahrtenanzeigeDataGridViewTab3.Rows.Add(Abfahrtsliste.Station.Name, AbfahrtstafelItem.To,
-                        AbfahrtstafelItem.Stop.Departure);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            SearchPositionAsync();
         }
 
         private void AbfahrtsortComboBoxTab1_KeyUp(object sender, KeyEventArgs e)
@@ -164,5 +144,63 @@ namespace SwissTransportGUI
             AbfahrtsDatumDateTimePickerTab1.CustomFormat = "dd.MM.yyyy";
         }
 
+        async Task SearchPositionAsync()
+        {
+            try
+            {
+                //Ortung
+                Ortung duWirstGeortet = new Ortung();
+                string ort = await duWirstGeortet.GetGeoInfo();
+
+            NameDerStationTextBoxTab3.Text = ort;
+
+
+            //Abfahrtenliste
+            var Abfahrtsliste = verbindung.GetStationBoard(NameDerStationTextBoxTab3.Text, NameDerStationTextBoxTab3.Text);
+
+                foreach (StationBoard AbfahrtstafelItem in Abfahrtsliste.Entries)
+                {
+                    AbfahrtenanzeigeDataGridViewTab3.Rows.Add(Abfahrtsliste.Station.Name, AbfahrtstafelItem.To,
+                        AbfahrtstafelItem.Stop.Departure);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void TakeMeHomeButtonTab1_Click(object sender, EventArgs e)
+        {
+            SearchPositionTakeMeHomeAsync();
+        }
+
+        async Task SearchPositionTakeMeHomeAsync()
+        {
+            try
+            {
+                //Ortung
+                Ortung duWirstGeortet = new Ortung();
+                string ort = await duWirstGeortet.GetGeoInfo();
+
+                AbfahrtsortComboBoxTab1.Text = ort;
+                DestinationComboBoxTab1.Text = "Buttisholz";
+
+                var VerbindungsListe = verbindung.GetConnections(AbfahrtsortComboBoxTab1.Text, DestinationComboBoxTab1.Text,
+                    AbfahrtsDatumDateTimePickerTab1.Value.ToShortDateString(), AbfahrtsZeitDateTimePickerTab1.Value.ToShortTimeString());
+
+                foreach (Connection VerbindungsItem in VerbindungsListe.ConnectionList)
+                {
+                    VerbindungsanzeigeDataGridViewTab1.Rows.Add(VerbindungsItem.From.Station.Name, VerbindungsItem.To.Station.Name,
+                        VerbindungsItem.From.Departure, string.Format("{0:HH:mm}", VerbindungsItem.Duration), VerbindungsItem.From.Platform);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

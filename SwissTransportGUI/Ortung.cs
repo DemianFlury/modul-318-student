@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using System.Text.Json.Serialization;
-using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace SwissTransportGUI
 {
@@ -23,13 +23,19 @@ namespace SwissTransportGUI
 
         private async Task<string> GetIPAddress()
         {
-            var ipAddress = await httpClient.GetAsync($"http://ipinfo.io/ip");
-            if (ipAddress.IsSuccessStatusCode)
+            String address = "";
+            WebRequest request = WebRequest.Create("http://checkip.dyndns.org/");
+            using (WebResponse response = request.GetResponse())
+            using (StreamReader stream = new StreamReader(response.GetResponseStream()))
             {
-                var json = await ipAddress.Content.ReadAsStringAsync();
-                return json.ToString();
+                address = stream.ReadToEnd();
             }
-            return "";
+
+            int first = address.IndexOf("Address: ") + 9;
+            int last = address.LastIndexOf("</body>");
+            address = address.Substring(first, last - first);
+
+            return address;
         }
         public async Task<string> GetGeoInfo()
         {
@@ -40,7 +46,9 @@ namespace SwissTransportGUI
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStringAsync();
-                return json;
+                var model = new JSONLesen();
+                model = JsonConvert.DeserializeObject<JSONLesen>(json);
+                return model.City;
             }
             return null;
         }
