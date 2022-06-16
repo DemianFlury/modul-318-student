@@ -1,6 +1,12 @@
-# modul-318-Student
+># modul-318-Student
+>
+>Students!
+>Fork this repository to your own Github account. Work there with this repository. The intructor will clone your repo for inspection and evaluation.
+>
+>Have Fun!
 
-Students!
-Fork this repository to your own Github account. Work there with this repository. The intructor will clone your repo for inspection and evaluation.
+### C# Application to find public transport connections in Switzerland.
 
-Have Fun!
+Made using the [Swisstransport-API](https://transport.opendata.ch/). Complete with location tracking via IP-Adress.
+<br/><br/>
+Graded 5.5 in M318
